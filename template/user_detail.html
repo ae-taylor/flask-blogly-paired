@@ -3,13 +3,13 @@
 {% block content %}
 
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{ img-url }}" alt="profile-img">
-    <div class="card-body">
-      <h5 class="card-title">{{ user }}</h5>
-      <p class="card-text">What a cooooool person!</p>
-      <a href="/users/{{ user-id }}/edit" class="btn btn-primary">edit</a>
-      <a href="/users/{{ user-id }}/delete" class="btn btn-primary">delete</a>
-    </div>
+  <img class="card-img-top" src="{{ user.image_url }}" alt="profile-img">
+  <div class="card-body">
+    <h5 class="card-title">{{ user.first_name + ' ' + user.last_name }}</h5>
+    <p class="card-text">What a cooooool person!</p>
+    <a href="/users/{{ user.id }}/edit" class="btn btn-primary">edit</a>
+    <a href="/users/{{ user.id }}/delete" class="btn btn-primary">delete</a>
   </div>
-  
-  {% endblock %}
+</div>
+
+{% endblock %}
