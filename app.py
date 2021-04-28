@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
 connect_db(app)
-db.create_all()
+# db.create_all()
 
 from flask_debugtoolbar import DebugToolbarExtension
 app.config['SECRET_KEY'] = "SECRET!"
@@ -67,10 +67,10 @@ def process_edit(user_id):
 
     return redirect('/users')
 
+
 @app.route('users/<int:user_id>/delete', methods=['POST'])
-    def delete_user(user_id):
-        
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    db.session.delete(user)
 
-
-
-
+    return redirect('/users')
