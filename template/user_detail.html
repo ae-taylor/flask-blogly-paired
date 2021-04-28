@@ -1,0 +1,15 @@
+{% extend base.html %}
+{% block title %}Create a User{% endblock %}
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ img-url }}" alt="profile-img">
+    <div class="card-body">
+      <h5 class="card-title">{{ user }}</h5>
+      <p class="card-text">What a cooooool person!</p>
+      <a href="/users/{{ user-id }}/edit" class="btn btn-primary">edit</a>
+      <a href="/users/{{ user-id }}/delete" class="btn btn-primary">delete</a>
+    </div>
+  </div>
+  
+  {% endblock %}

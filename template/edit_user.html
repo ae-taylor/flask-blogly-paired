@@ -1,0 +1,22 @@
+{% extend base.html %}
+{% block title %}Create a User{% endblock %}
+{% block content %}
+
+<form action="/users/new" method="POST">
+    <div class="form-group">
+      <label for="first-name">{{first-name}}</label>
+      <input name="first-name" type="text" class="form-control" id="first-name" aria-describedby="emailHelp" placeholder="Enter first name">
+    </div>
+    <div class="form-group">
+      <label for="last-name">{{last-name}}</label>
+      <input name="last-name" type="text" class="form-control" id="last-name" placeholder="Enter last name here">
+    </div>
+    <div class="form-group">
+        <label for="img-url">{{img-url}}</label>
+        <input name="img-url" type="text" class="form-control" id="img-url" placeholder="Insert URL for profile picture">
+      </div>
+    <a href="/users/{{user-id}}" class="btn btn-primary">Cancel</a>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+
+{% endblock %}
