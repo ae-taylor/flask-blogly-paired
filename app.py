@@ -28,36 +28,36 @@ def show_users():
                            users=users)
 
 
-@app.route('users/new')
+@app.route('/users/new')
 def show_user_add_form():
     return render_template('new_user.html')
 
 
-@app.route('users/new', methods=['POST'])
+@app.route('/users/new', methods=['POST'])
 def process_new_user():
 
     first_name = request.form['first-name']
     last_name = request.form['last-name']
     image_url = request.form['img-url']
 
-    new_user = User(first_name, last_name, image_url)
+    new_user = User(first_name = first_name, last_name = last_name, image_url = image_url)
     db.session.add(new_user)
     db.session.commit()
 
     return redirect('/users')
 
-@app.route('users/<int:user_id>')
+@app.route('/users/<int:user_id>')
 def show_profile(user_id):
 
     user = User.query.get_or_404(user_id)
-    render_template('user_detail.html', user=user)
+    return render_template('user_detail.html', user=user)
 
-@app.route('users/<int:user_id>/edit')
+@app.route('/users/<int:user_id>/edit')
 def show_edit_page(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('edit_user.html', user=user)
 
-@app.route('users/<int:user_id>/edit', methods=['POST'])
+@app.route('/users/<int:user_id>/edit', methods=['POST'])
 def process_edit(user_id):
     user = User.query.get(user_id)
 
@@ -65,12 +65,14 @@ def process_edit(user_id):
     user.last_name = request.form['last-name']
     user.image_url = request.form['img-url']
 
+    db.session.commit()
     return redirect('/users')
 
 
-@app.route('users/<int:user_id>/delete', methods=['POST'])
+@app.route('/users/<int:user_id>/delete', methods=['POST'])
 def delete_user(user_id):
     user = User.query.get(user_id)
     db.session.delete(user)
+    db.session.commit()
 
     return redirect('/users')

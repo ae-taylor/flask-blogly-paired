@@ -13,6 +13,7 @@ class User(db.Model):
     """User model"""
     __tablename__ = "users"
 
+# MAYBE? def __init__(first_name, last_name, image_url)
     id = db.Column(db.Integer,
                    primary_key=True,
                    autoincrement=True)
