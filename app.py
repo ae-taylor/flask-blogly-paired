@@ -56,7 +56,8 @@ def process_new_user():
 def show_profile(user_id):
     """render profile page for user """
     user = User.query.get_or_404(user_id)
-    return render_template('user_detail.html', user=user)
+    posts = Post.query.filter(Post.user_id = user_id)
+    return render_template('user_detail.html', user=user, posts=posts)
 
 
 @app.route('/users/<int:user_id>/edit')
@@ -87,3 +88,22 @@ def delete_user(user_id):
     db.session.commit()
 
     return redirect('/users')
+
+
+# routes for blog_posts start here
+
+@app.route('/users/<int:user_id>/posts/new')
+def show_add_post_form(user_id):
+    """ shows form to add a post for user """
+    user = User.query.get(user_id)
+    return render_template('new_post.html', user=user)
+
+
+@app.route('/users/<int:user_id>/posts/new', methods=["POST"])
+def process_new_post(user_id):
+    title = request.form['title']
+    content = request.form['content']
+    
+    new_post = Post(title=title, content=content, user_id=user_id)
+    db.session.add(new_post)
+    db.session.commit()

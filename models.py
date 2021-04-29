@@ -31,7 +31,31 @@ class User(db.Model):
         return f"<User {u.id} {u.first_name} {u.last_name} {u.image_url}>"
 
 
+class Post(db.Model):
+    """ Post model """
+    __tablename__ = "posts"
+
+
+    id = db.Column(db.Integer, 
+                    primary_key=True,
+                    autoincrement=True)
+    title = db.Column(db.String(100),
+                        nullable = False)
+    content = db.Column(db.Text,
+                        nullable = False)
+    created_at = db.Column(default = datetime.datetime.utcnow)
+    user_id = db.Column(db.Integer, 
+                        db.ForeignKey('user.id'))
     
+
+    def __repr__(self):
+        """Show info about blog post."""
+
+        b = self
+        return f"<Blog {b.id} {b.title} {b.created_at} {b.user_id}>"
+
+
     
+
 
 
