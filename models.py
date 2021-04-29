@@ -13,7 +13,7 @@ class User(db.Model):
     """User model"""
     __tablename__ = "users"
 
-# MAYBE? def __init__(first_name, last_name, image_url)
+
     id = db.Column(db.Integer,
                    primary_key=True,
                    autoincrement=True)
@@ -30,9 +30,7 @@ class User(db.Model):
         u = self
         return f"<User {u.id} {u.first_name} {u.last_name} {u.image_url}>"
 
-    @classmethod
-    def get_users(cls):
-        cls.query.get(id)
+
     
     
 

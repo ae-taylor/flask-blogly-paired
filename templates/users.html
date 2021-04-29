@@ -3,14 +3,14 @@
 {% block title %} Users {% endblock %}
 
 {% block content %}
-
+<!-- User Homepage Use for testing -->
 {% for user in users %}
 <ul class="list-group">
-<li class="list-group-item"><a href="/users/{{user.id}} ">{{ user.first_name + ' ' + user.last_name }}</a></li>
-{% endfor %}
-<form action="/users/new">
-    <button type="submit">Add user</button>
-</form>
+    <li class="list-group-item"><a href="/users/{{user.id}} ">{{ user.first_name + ' ' + user.last_name }}</a></li>
+    {% endfor %}
+    <form action="/users/new">
+        <button type="submit">Add user</button>
+    </form>
 </ul>
 
 {% endblock %}
